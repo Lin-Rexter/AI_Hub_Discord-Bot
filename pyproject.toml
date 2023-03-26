@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ai-hub-discord-bot"
+version = "0.0.1"
+description = "ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord Bot"
+authors = ["Lin-Rexter <aaaa35963596@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ai_hub_discord_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

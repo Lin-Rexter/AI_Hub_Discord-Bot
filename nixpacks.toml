@@ -1,0 +1,2 @@
+[start]
+cmd = "poetry run python .\bot.py"

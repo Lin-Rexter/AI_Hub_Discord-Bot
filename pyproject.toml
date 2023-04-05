@@ -5,7 +5,6 @@ description = "ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application
 authors = ["Lin-Rexter <aaaa35963596@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "ai_hub_discord_bot"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

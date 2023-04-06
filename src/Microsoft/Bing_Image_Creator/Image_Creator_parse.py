@@ -25,9 +25,6 @@ def Image_Creator_Reply(prompt, width=None, height=None, cookie_file='./src/Micr
         # Create image generator
         image_generator = ImageGen(U)
         images_list = image_generator.get_images(prompt)
-    
-        # 移除圖片大小限制
-        #normal_image_links = [link.split("?w=")[0] for link in images_list]
 
         if len(images_list) != 0 or images_list != None:
             # 設置圖片大小
@@ -41,11 +38,3 @@ def Image_Creator_Reply(prompt, width=None, height=None, cookie_file='./src/Micr
         print("\nError:", e)
         images_reply = "Oops❗ 沒有圖片，請嘗試移除較敏感字眼!"
         return [prompt, images_reply]
-
-    """
-    # Save Images
-    image_generator.save_images(
-        image_generator.get_images(prompt),
-        output_dir=Output_dir,
-    )
-    """

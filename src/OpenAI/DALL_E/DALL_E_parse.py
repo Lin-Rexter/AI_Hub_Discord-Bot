@@ -12,11 +12,6 @@ load_dotenv(env_path)
 # 獲取OpenAI Api的Key
 Openai_API_Key = os.getenv('OPENAI_API_KEY', None)
 
-'''
-if not Openai_Api_Key:
-    raise Exception('Please set the OPENAI_API_KEY environment variable in the .env file.\n請在.env檔設置OPENAI_API_KEY環境變量。\n')
-    sys.exit(1)
-'''
 
 size_dict = {
     256: "256x256",
@@ -33,9 +28,9 @@ def DALL_E_Reply(prompts, parameter=None, size=None, API_Key=None) -> list:
         else:
             image_list = []
             image = openai.Image.create(
-                prompt = prompts, # 圖片描述
-                n = parameter, # 圖片數量
-                size = size_dict[size] # 圖片大小 256x256, 512x512, 1024x1024 pixels
+                prompt = prompts,       # 圖片描述
+                n = parameter,          # 圖片數量
+                size = size_dict[size]  # 圖片大小 256x256, 512x512, 1024x1024 pixels
             )
 
             for Dict in image['data']:

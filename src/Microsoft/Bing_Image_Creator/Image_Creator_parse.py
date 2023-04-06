@@ -23,7 +23,7 @@ def Image_Creator_Reply(prompt, width=None, height=None, cookie_file='./src/Micr
 
     try:
         # Create image generator
-        image_generator = ImageGen(U)
+        image_generator = ImageGen(auth_cookie=U, debug=None, debug_file=False)
         images_list = image_generator.get_images(prompt)
 
         if len(images_list) != 0 or images_list != None:

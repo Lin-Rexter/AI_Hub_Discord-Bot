@@ -11,10 +11,10 @@ load_dotenv(env_path)
 # 獲取Bard的Token
 Bard_Token = os.getenv('BARD_TOKEN', None)
 
-chatbot = Chatbot(Bard_Token)
-
 def Bard_Reply(Texts) -> str:
     try:
+        chatbot = Chatbot(Bard_Token)
+
         return chatbot.ask(Texts)
     except Exception as e:
         print("\n", e)

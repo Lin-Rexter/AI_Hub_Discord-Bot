@@ -182,7 +182,7 @@ async def bard(
     await ctx.defer()
     print(f"\n\n使用者完整命令: /bard {prompts}") # 使用者完整命令
 
-    result = await Bard_Reply(prompts)
+    result = Bard_Reply(prompts)
     if(isinstance(result, list)):
         if(result[0] == "Error"):
             result = f"⚠️ {result[1]}"

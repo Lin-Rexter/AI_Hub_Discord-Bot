@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 # 讀取.env檔
 from dotenv import load_dotenv

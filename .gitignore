@@ -129,3 +129,6 @@ dmypy.json
 
 # txt
 no.txt
+
+# test
+test.py

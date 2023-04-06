@@ -18,4 +18,4 @@ def Bard_Reply(Texts) -> str:
         return chatbot.ask(Texts)
     except Exception as e:
         print("\n", e)
-        return ['Error', "請確認Bard_Token是否正確"]
+        return ['Error', "請確認Bard Token是否正確"]

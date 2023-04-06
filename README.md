@@ -4,7 +4,7 @@
 <div align="center">
 
 # AI_Hub_Discord_Bot
-ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord Bot.
+**ChatGPT、 BingGPT、 Image Creator、 DALL·E、 Other AI Application with Discord Bot.**
 
 </div>
 
@@ -17,7 +17,13 @@ ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord B
 - **[DALL·E](https://platform.openai.com/docs/api-reference/images)**<br>
 - **More...**
 
+<details>
+  <summary>
+
 ## Commands
+
+  </summary>
+
 ```
 [ChatGPT]:
 	/gpt:
@@ -58,10 +64,19 @@ ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord B
 More...
 ```
 
+</details>
+
+<details>
+  <summary>
+
 ## Supported languages
+
+  </summary>
+
 - **Chinese**
 - **English** (coming soon...)
 
+</details>
 
 <details>
   <summary>
@@ -70,11 +85,11 @@ More...
 
   </summary>
 
-**1. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/ea98ad2d15728017ecd56fe7e5e870f7e76dd1eb/.env)**<br>
+**1. [Set Environment Variables(not necessary)](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/ea98ad2d15728017ecd56fe7e5e870f7e76dd1eb/.env)**<br>
 **2. [Install Poetry](https://python-poetry.org/docs/)**<br>
 **3. Run `poetry shell`**<br>
 **4. Run `poetry install`**<br>
-**5. Run `python ./main.py` or `poetry run python ./main.py`**<br>
+**5. Run `python ./bot.py` or `poetry run python ./bot.py`**<br>
 
 </details>
 

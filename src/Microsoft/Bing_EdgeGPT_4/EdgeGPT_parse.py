@@ -16,6 +16,5 @@ async def EdgeGPT_Reply(Texts, role=None) -> str:
 
     reply_dict = await bot.ask(prompt=Texts, conversation_style=style)
     reply_text = reply_dict["item"]["messages"][1]["text"]
-    #await bot.close()
-    #print(reply_text)
+
     return reply_text

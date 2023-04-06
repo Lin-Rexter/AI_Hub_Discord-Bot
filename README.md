@@ -70,7 +70,7 @@ More...
 
   </summary>
 
-**1. [Set Environment Variables]()**<br>
+**1. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/ea98ad2d15728017ecd56fe7e5e870f7e76dd1eb/.env)**<br>
 **2. [Install Poetry](https://python-poetry.org/docs/)**<br>
 **3. Run `poetry shell`**<br>
 **4. Run `poetry install`**<br>

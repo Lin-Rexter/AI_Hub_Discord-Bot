@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 #第三方作者包裝的官方API
 from revChatGPT.V3 import Chatbot
 
-
 # 讀取.env檔環境變量
 env_path = Path(__file__).resolve().parents[3] / '.env'
 load_dotenv(env_path)
@@ -15,11 +14,6 @@ load_dotenv(env_path)
 Openai_API_Key = os.getenv('OPENAI_API_KEY', None)
 ChatGPT_Model= os.getenv('CHATGPT_MODEL', None)
 
-'''
-if not Openai_Api_Key:
-    raise Exception('Please set the OPENAI_API_KEY environment variable in the .env file.\n請在.env檔設置OPENAI_API_KEY環境變量。\n')
-    sys.exit(1)
-'''
 
 chatbot = Chatbot(
         api_key = Openai_API_Key
@@ -59,35 +53,3 @@ def ChatGPT_Reply(Texts, role=None, engine=None,top_p=None, temperature=None, pr
     except Exception as e:
         print("\n", e)
         return ['Error', "請確認Api Key或是模型名稱是否正確"]
-
-"""
-#官方API
-openai.api_key = Openai_Api_Key
-
-gpt_role = {
-    "用戶": "user",
-    "系統": "system",
-    "助手": "assistant"
-}
-
-def ChatGPT_Reply(Ask) -> str:
-    role_name = Ask.split(" ")[0].strip() # ChatGPT角色
-
-    if role_name in gpt_role:
-        Ask_prompt = Ask.split(" ")[1].strip() # 使用者輸入的對話
-        role = gpt_role[role_name]
-    else:
-        Ask_prompt = Ask
-        role = "user"
-
-    print("\n角色: " + role)
-
-    completion = openai.ChatCompletion.create(
-        model=ChatGPT_Model,
-        messages=[
-            {"role": role, "content": Ask_prompt}
-        ]
-    )
-
-    return completion.choices[0].message["content"].encode().decode('utf-8')
-"""

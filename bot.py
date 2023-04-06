@@ -7,9 +7,13 @@ import json
 import asyncio
 import numpy as np
 from typing import List
+
 # py-cord
 import discord
 from discord.ext import commands, tasks
+
+# Google - Bard AI聊天
+from src.Google.Bard_Chat import Bard_Reply
 
 # OpenAI - ChatGPT(ChatGPT-3.5) AI聊天
 from src.OpenAI.ChatGPT_3 import ChatGPT_Reply
@@ -46,13 +50,11 @@ intents.messages  = True
 intents.message_content = True # discord.ext
 intents.members = True
 
-
 # 創建Bot物件
-#client = discord.Client(intents=intents) # import discord 
-#client = discord.Bot(command_prefix='/', intents=intents) # from discord.ext import commands
 client = discord.Bot(intents=intents) # py-cord
 
-# 管理者ID
+
+# Your Discord ID(if you are the manager of this discord bot, modify it or delete)
 global Admin_ID
 Admin_ID = 824171370228744232
 
@@ -60,15 +62,11 @@ Admin_ID = 824171370228744232
 async def change_status():
     new_status = random.choice(
                 [
-                    '資料科學導論',
-                    '統計學',
-                    '體育',
-                    '視窗程式設計',
-                    'Python基礎程式設計',
-                    '系統分析與設計',
-                    '物件導向程式設計',
-                    '影像處理概論',
-                    '通識課'
+                    "I want more...",
+                    "You can't stop me!",
+                    "Hello World!",
+                    "YOU!!!",
+                    "Life game..."
                 ]
             )
 
@@ -78,17 +76,6 @@ async def change_status():
 @client.event # 呼叫event函式庫
 async def on_ready(): # 當bot完成啟動時
     change_status.start()
-
-    """
-    # Setting `Streaming ` status
-    await client.change_presence(activity=discord.Streaming(name="My Stream", url=""))
-
-    # Setting `Listening ` status
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="a song"))
-
-    # Setting `Watching ` status
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="YOU!!!"))
-    """
 
     print(f'We have logged in as {client.user}')
 
@@ -184,6 +171,27 @@ async def gpt4(
     await ctx.respond(result, ephemeral=True)
 
 
+# Google Bard
+@client.slash_command(description="與Google Bard聊天")
+async def bard(
+        ctx:discord.ApplicationContext,
+        prompts: discord.Option(str, description="你要與Google Bard聊的內容"),
+        token: discord.Option(str, description="Google Bard的Token")
+    ):
+
+    await ctx.defer()
+    print(f"\n\n使用者完整命令: /bard {prompts}") # 使用者完整命令
+
+    result = await Bard_Reply(prompts)
+    if(isinstance(result, list)):
+        if(result[0] == "Error"):
+            result = f"⚠️ {result[1]}"
+
+    print(f"\n命令結果: {result}") # 命令結果
+
+    await ctx.respond(result, ephemeral=True)
+
+
 # Bing Image Creator
 @client.slash_command(description="使用Bing Image Creator AI繪圖")
 async def img(
@@ -262,24 +270,6 @@ async def dall(
 
         await ctx.respond(embeds=embed_list, ephemeral=True)
 
-'''
-# 子選項範例
-async def get_animal_types(ctx: discord.AutocompleteContext):
-    animal_type = ctx.options['animal_type']
-    if animal_type == 'Marine':
-        return ['Whale', 'Shark', 'Fish', 'Octopus', 'Turtle']
-    else:
-        return ['Snake', 'Wolf', 'Lizard', 'Lion', 'Bird']
-
-@client.slash_command()
-async def animal(
-    ctx: discord.ApplicationContext,
-    animal_type: discord.Option(str, choices=['Marine', 'Land']),
-    animal: discord.Option(str, autocomplete=discord.utils.basic_autocomplete(get_animal_types))
-):
-    await ctx.respond(f'You picked an animal type of `{animal_type}` that led you to pick `{animal}`!')
-'''
-
 # 翻譯處理
 def translate(texts):
     translated = GoogleTranslator(source='auto', target='en').translate(texts)
@@ -292,65 +282,6 @@ def beauty_dict(data:dict, indent_value:int, utf_8:bool):
         return json.dumps(data, indent=indent_value, ensure_ascii=False).encode('utf8').decode()
     else:
         return json.dumps(data, indent=indent_value)
-
-'''
-@client.event
-# 當有訊息時
-async def on_message(ctx):
-    if ctx.author == client.user:
-        return
-    
-    useful_commands = ['/img ', '/dall ', '/gpt ', '/gpt4 ']  # 有效的指令
-    ignore_commands = ['/help', '/new'] # 忽略的指令
-
-    # 提及對話者
-    #mention = ctx.author.mention
-
-    if ctx.content.startswith(tuple(useful_commands)):
-        async with ctx.channel.typing():
-            await asyncio.sleep(0.5)
-            result = await command_reply(ctx.content)
-
-        if(isinstance(result, str)):
-            await ctx.reply(f'{result}')
-        elif(isinstance(result, list)):
-            if(isinstance(result[1], list)):
-                img_list = '\n'.join(img for img in result[1])
-            else:
-                img_list = result[1]
-
-            await ctx.reply(f'{img_list}')
-'''
-
-''''
-# 命令對應功能處理
-async def command_reply(command):
-    # 指令對應功能
-    commands_list = {
-        '/gpt': lambda msg: ChatGPT_Reply(msg),
-        '/img': lambda msg: Image_Creator_Reply(translate(msg)),
-        '/dall': lambda msg: DALL_E_Reply(msg)
-    }
-    
-    await_commands_list = {
-        '/gpt4': lambda msg: EdgeGPT_Reply(msg)
-    }
-
-    command_name = command.split(" ")[0].strip() # 命令名稱
-    command_value = command.split(command_name)[1].strip() # 命令值
-
-    print("\n使用者完整命令: {}".format(command)) # 使用者完整命令
-    print("\n命令的值: {}".format(command_value)) # 命令的值
-    
-    if(command_name in await_commands_list):
-        reply_ctx = await await_commands_list[command_name](command_value)
-    else:
-        reply_ctx = commands_list[command_name](command_value)
-
-    print("\n命令結果: {}".format(reply_ctx)) # 命令結果
-
-    return reply_ctx
-'''
 
 
 if __name__ == "__main__":

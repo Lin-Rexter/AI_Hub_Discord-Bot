@@ -131,4 +131,5 @@ dmypy.json
 no.txt
 
 # test
+test_*.py
 test.py

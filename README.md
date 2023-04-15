@@ -3,74 +3,126 @@
 
 <div align="center">
 
-# AI_Hub_Discord_Bot
-**Google Bard、 ChatGPT、 Bing ChatGPT、 Bing Image Creator、 OpenAI DALL·E、 Other AI Application with Discord Bot.**
+# 🤖AI-Hub-Discord-Bot🤖
+**Discord bot with multiple applications of AI.**
+
+<img src="https://user-images.githubusercontent.com/84280745/230615435-2c90c882-f34d-46e4-a140-8d0f69461bd1.gif" alt="Demo">
 
 </div>
 
 ---
 
-## Features
-- **[Bard](https://github.com/acheong08/Bard)**<br>
-- **[ChatGPT](https://github.com/acheong08/ChatGPT#v3-official-chat-api)**<br>
-- **[EdgeGPT](https://github.com/acheong08/EdgeGPT#chatbot)**<br>
-- **[Bing Image Creator](https://github.com/acheong08/EdgeGPT#image-generator)**<br>
-- **[DALL·E](https://platform.openai.com/docs/api-reference/images)**<br>
-- **More...**
+## Features💡
+- **🤖[ChatGPT](https://github.com/acheong08/ChatGPT#v3-official-chat-api)**<br>
+- **🤖[Bing ChatGPT](https://github.com/acheong08/EdgeGPT#chatbot)**<br>
+- **🤖[Bard](https://github.com/acheong08/Bard)**<br>
+- **🎨[Bing Image Creator](https://github.com/acheong08/EdgeGPT#image-generator)**<br>
+- **🎨[DALL·E](https://platform.openai.com/docs/api-reference/images)**<br>
+- **[More(coming soon...)](https://replicate.com/explore)**
 
 <details>
   <summary>
 
-## Commands
-
+## Example🕹️
+	  
   </summary>
 
-```
-[ChatGPT]:
-	/gpt:
-	   + <prompts [對話]>
-	   + <api_key [OpenAI的API Key]>
-	   + <role [用戶(默認), 系統, 助手]>
-	   + <engine [gpt-3.5-turbo(默認), gpt-4, gpt-4-32k]>
-	   + <top_p>
-	   + <temperature>
-	   + <presence_penalty>
-	   + <frequency_penalty>
-	   + <reply_count>
-	   + coming soon...
+- ### **🤖ChatGPT**
+> ```
+> /gpt
+> ```
+>> <img src="https://user-images.githubusercontent.com/84280745/230544952-6342c67b-e7d6-4fa6-85db-924ed5d4b0da.gif" alt="ChatGPT">
 
-[EdgeGPT]:
-	/gpt4:
-	   + <prompts [對話]>
-	   + <role [創意, 平衡(默認), 精確]>
+- ### **🤖Bing ChatGPT**
+> 
+> ```
+> /gpt4
+> ```
+>><img src="https://user-images.githubusercontent.com/84280745/230545509-29f5cb29-9598-4884-b06f-bfcf0bb4d62e.gif" alt="Bing ChatGPT">
 
-[Bard]:
-	/bard:
-	   + <prompts [對話]>
-	   + <token[Google Bard的Token]>
-
-[Bing Image Creator]:
-	/img:
-	   + <prompts [圖片描述]>
-	   + <width>
-	   + <height>
-
-[DALL·E]:
-	/dall:
-	   + <prompts [圖片描述]>
-	   + <api_key [OpenAI的API Key]>
-	   + <parameter>
-	   + <size>
-
-More...
-```
+- ### **🎨Bing Image Creator**
+> ```
+> /img
+> ```
+>><img src="https://user-images.githubusercontent.com/84280745/230546595-5c16f4d7-338c-4793-960e-500981f360bc.gif" alt="Bing Image Creator">
 
 </details>
 
 <details>
   <summary>
 
-## Supported languages
+## Commands🤖
+
+  </summary>
+
+```
+[ChatGPT]:
+	/gpt:
+	   + <prompts [message 對話]>
+	   
+	   + <api_key [OpenAI的API Key]>
+	   
+	   + <role [系統(System), 用戶(User)(Default), 助手(Assistant)]>
+	   
+	   + <engine [gpt-3.5-turbo(Default), gpt-4, gpt-4-32k]> # GPT model
+	   
+	   + <top_p [0.0~1.0, https://platform.openai.com/docs/api-reference/chat/create#chat/create-top_p]>
+	   
+	   + <temperature [0.0~2.0, https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature]>
+	   
+	   + <presence_penalty [-2.0 ~ 2.0, https://platform.openai.com/docs/api-reference/completions/create#completions/create-presence_penalty]>
+	   
+	   + <frequency_penalty [-2.0 ~ 2.0, https://platform.openai.com/docs/api-reference/completions/create#completions/create-frequency_penalty]>
+	   
+	   + <reply_count [Defaults: 1, https://platform.openai.com/docs/api-reference/completions/create#completions/create-n]>
+	   
+	   + <rollback> [Rollback the conversation by n messages]
+	   
+	   + <reset> [Reset the conversation]
+	   
+	   + coming soon...
+
+[Bing ChatGPT]:
+	/gpt4:
+	   + <prompts [message 對話]>
+	   
+	   + <role [創意(Creative), 平衡(Balanced)(Default), 精確(Precise)]> # Conversation style
+
+[Bard]:
+	/bard:
+	   + <prompts [message 對話]>
+	   
+	   + <token [SESSION("__Secure-1PSID" cookie, https://github.com/acheong08/Bard#authentication)]>
+
+[Bing Image Creator]:
+	/img:
+	   + <prompts [description 圖片描述]>
+	   
+	   + <width> # Image width
+	   
+	   + <height> # Image height
+	   
+	   + <auth_cookies [_U cookie, https://github.com/acheong08/BingImageCreator#getting-authentication]>
+
+[DALL·E]:
+	/dall:
+	   + <prompts [description 圖片描述]>
+	   
+	   + <api_key [OpenAI的API Key]>
+	   
+	   + <parameter [1~10, https://platform.openai.com/docs/api-reference/images/create#images/create-n]>
+	   
+	   + <size [256x256, 512x512, 1024x1024]>
+
+More...
+```
+
+</details>
+	
+<details>
+  <summary>
+
+## Supported languages🌎
 
   </summary>
 
@@ -82,15 +134,81 @@ More...
 <details>
   <summary>
   
-## How to use
+## How to create and deploy🚀
 
   </summary>
 
-**1. [Set Environment Variables(not necessary)](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/4a116f6434278c445a0f2c399c6371b9df861000/.env)**<br>
-**2. [Install Poetry](https://python-poetry.org/docs/)**<br>
-**3. Run `poetry shell`**<br>
-**4. Run `poetry install`**<br>
-**5. Run `python ./bot.py` or `poetry run python ./bot.py`**<br>
+- ### Cloud Hosting
+#### 1. [Railway](https://railway.app)
+> [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/9XWCtT?referralCode=CCqlpO)
+
+- ### Local Deployment
+#### 1. Clone this Repository
+> ```bash
+> git clone https://github.com/Lin-Rexter/AI_Hub_Discord-Bot.git
+> ```
+
+#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/4a116f6434278c445a0f2c399c6371b9df861000/.env)
+> ```env
+> # Discord Bot token # https://discord.com/developers/applications
+> DISCORD_TOKEN = ""
+>
+> # Discord Administrator ID(Administrator ID to mention when an unexpected error occurred in executing the command)
+> DISCORD_ADMIN_ID = ""
+>
+> # OpenAI API key[ChatGPT(Official), DALL·E] # https://platform.openai.com/account/api-keys
+> OPENAI_API_KEY = ""
+>
+> # Bing Image Creator(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
+> AUTH_COOKIE = ""
+>
+> # Google Bard Token[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
+> BARD_TOKEN = ""
+>
+> # Default ChatGPT_Model(gpt-3.5-turbo, gpt-4, gpt-4-32k)
+> CHATGPT_MODEL = "gpt-3.5-turbo"
+>
+> # Default Bing ChatGPT response style(creative, balanced, precise)
+> RESPONSE_STYLE = "balanced"
+>
+> ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": The value returned from the command will be used first.
+> ```
+
+#### 3. [Running via Poetry](https://python-poetry.org/docs/#installation)
+> **3-1. Edit [poetry config settings](https://python-poetry.org/docs/cli/#config)**
+> If you prefer to have the virtual environment in the project directory
+> ```bash
+> poetry config virtualenvs.in-project true
+> ```
+
+> **3-2. [Installs the dependencies specified in pyproject.toml](https://python-poetry.org/docs/cli/#install)**
+> ```bash
+> poetry install
+> ```
+
+> **3-3. [Activating the virtual environment](https://python-poetry.org/docs/cli/#shell)**
+> * Use default Python version
+> ```bash
+> poetry shell
+> ```
+>
+> * If you want to [specify Python version](https://python-poetry.org/docs/managing-environments/#switching-between-environments)
+> ```bash
+> poetry env use 3.9
+> ```
+
+> **3-4. Run script**
+> * If you use `poetry shell`
+> ```bash
+> python ./bot.py
+> ```
+>
+> * If you **not use** `poetry shell`
+> ```bash
+> poetry run python ./bot.py
+> ```
 
 </details>
 
+## License
+**[MIT](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/1902f8e112c3e682ab041c39864d8bb8c7f78a24/LICENSE)**

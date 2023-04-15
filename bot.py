@@ -2,61 +2,68 @@
 import os
 import sys
 import time
+import datetime
 import random
 import json
 import asyncio
 import numpy as np
 from typing import List
+from dotenv import load_dotenv
 
 # py-cord
 import discord
 from discord.ext import commands, tasks
 
-# Google - Bard AI聊天
-from src.Google.Bard_Chat import Bard_Reply
+# OpenAI(ChatGPT, DALL·E-2)
+from src.OpenAI import (
+        ChatGPT_Reply,
+        DALL_E_Reply
+    )
 
-# OpenAI - ChatGPT(ChatGPT-3.5) AI聊天
-from src.OpenAI.ChatGPT_3 import ChatGPT_Reply
+# Microsoft(Bing ChatGPT, Bing Image Creator)
+from src.Microsoft import (
+        EdgeGPT_Reply,
+        Image_Creator_Reply
+    )
 
-# Microsoft - EdgeGPT(ChatGPT-4) AI聊天
-from src.Microsoft.Bing_EdgeGPT_4 import EdgeGPT_Reply
+# Google(Bard)
+from src.Google import Bard_Reply
 
-# OpenAI - DALL·E 2 AI生成圖像
-from src.OpenAI.DALL_E import DALL_E_Reply
-
-# Microsoft - Bing Image Creator(結合DALL-E) AI生成圖像
-from src.Microsoft.Bing_Image_Creator import Image_Creator_Reply
-
-# 翻譯器
+# Translator
 from deep_translator import GoogleTranslator
 
-# 讀取.env檔
-from dotenv import load_dotenv
 
-# 讀取.env檔環境變量
-load_dotenv('.env')
+# take environment variables from .env
+env_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), ".env")
 
-# 獲取Line Bot的TOKEN、 SECRET
-Discord_Token = os.getenv('DISCORD_TOKEN', None)
+# check whether .env file exists
+is_env_exist = os.path.exists(env_path) and os.path.isfile(env_path)
+
+if is_env_exist:
+    load_dotenv(env_path)
+
+    # take Discord Bot token from environment variables
+    Discord_Token = os.getenv('DISCORD_TOKEN', None)
+    
+    # take Discord Administrator ID from environment variables
+    Administrator_ID = os.getenv('DISCORD_ADMIN_ID', None)
 
 if not Discord_Token:
-    raise Exception('\nPlease set the DISCORD_TOKEN environment variable in the .env file.\n請在.env檔設置DISCORD_TOKEN環境變量。\n')
-    sys.exit(1)
+    sys.exit("\nPlease set the DISCORD_TOKEN environment variable in the .env file.\n請在.env檔設置DISCORD_TOKEN環境變量。\n")
 
 
-# Discord Bot 權限設置(Intents)
+# Discord Bot Intents(權限設置)
 intents = discord.Intents.default()
-intents.messages  = True
 intents.message_content = True # discord.ext
 intents.members = True
 
-# 創建Bot物件
-client = discord.Bot(intents=intents) # py-cord
+# py-cord, 創建Bot物件
+client = discord.Bot(intents=intents)
 
-
-# Your Discord ID(if you are the manager of this discord bot, modify it or delete)
+# Discord Administrator ID
 global Admin_ID
-Admin_ID = 824171370228744232
+Admin_ID = Administrator_ID
+
 
 @tasks.loop(seconds=random.randint(2, 6))
 async def change_status():
@@ -89,86 +96,87 @@ async def help(ctx):
         color=discord.Colour.blurple()
     )
 
-    embed.add_field(name="🤖 /gpt", value="✅ <prompts[對話]>\n✅ <api_key[OpenAI的API Key]>\n✅ <role[用戶(默認), 系統, 助手]>\n✅ <engine[gpt-3.5-turbo(默認), gpt-4, gpt-4-32k]>\n✅ <top_p>\n✅ <temperature>\n✅ <presence_penalty>\n✅ <frequency_penalty>\n✅ <reply_count>", inline=False)
-    embed.add_field(name="🤖 /gpt4", value="✅ <創意, 平衡(默認), 精確>\n✅ <對話>", inline=False)
-    embed.add_field(name="🎨 /img", value="✅ <圖片描述>\n✅ <width>\n✅ <height>", inline=False)
-    embed.add_field(name="", value="> **<width>跟<height>默認都為1024**", inline=False)
-    embed.add_field(name="🎨 /dall", value="✅ <api_key>\n✅ <parameter>\n✅ <size>\n✅ <圖片描述>", inline=False)
+    
+
+    embed.add_field(name="🤖 /gpt [ChatGPT]", value="✅ <prompts[對話]>\n✅ <api_key[OpenAI的API Key]>\n✅ <role[system, user(Default), assistant]>\n✅ <engine[gpt-3.5-turbo(Default), gpt-4, gpt-4-32k]>\n✅ <top_p>\n✅ <temperature>\n✅ <presence_penalty>\n✅ <frequency_penalty>\n✅ <reply_count>\n✅ <rollback[Rollback the conversation by n messages]>\n✅ <reset[Reset the conversation]>", inline=False)
+    embed.add_field(name="🤖 /gpt4 [Bing ChatGPT]", value="✅ <prompts[對話]>\n✅ <style[creative, balanced(Default), precise]>", inline=False)
+    embed.add_field(name="🤖 /bard [Google Bard]", value="✅ <prompts[對話]>\n✅ <token[SESSION('__Secure-1PSID' cookie]>", inline=False)
+    embed.add_field(name="", value="> **Join the waitlist for Bard: [https://bard.google.com](https://bard.google.com)**", inline=False)
+    embed.add_field(name="🎨 /img [Bing Image Creator]", value="✅ <prompts[圖片描述]>\n✅ <width>\n✅ <height>\n✅ <auth_cookies>", inline=False)
+    embed.add_field(name="", value="> **<width>跟<height>: 1024px**", inline=False)
+    embed.add_field(name="🎨 /dall [DALL·E 2]", value="✅ <prompts[圖片描述]>\n✅ <api_key>\n✅ <size>\n✅ <parameter[The number of images to generate(1 ~ 10)]>", inline=False)
     embed.add_field(name="", value="> **Ex: sk-xxx 1 256/512/1024 cute cat**", inline=False)
     embed.add_field(name="", value="-----------------------------------------", inline=False)
-    embed.add_field(name="⚠️ Notice: ", value="> **<>括號不用打，默認表示未指定模式時所採用。**", inline=False)
+    embed.add_field(name="⚠️ Notice: ", value="> **<>、[]括號不用打，默認表示未指定模式時所採用。**", inline=False)
     embed.add_field(name="", value="> **各指令有專屬頻道以及教學。**", inline=False)
  
-    embed.set_footer(text="@Wen Jin | AI-Hub-ChatGPT")
+    now = datetime.datetime.now()
+    embed.set_footer(text=f"@Wen Jin | AI-Hub-ChatGPT\nAI-Hub-ChatGPT Github: https://github.com/Lin-Rexter/AI_Hub_Discord-Bot\nTime: {now.strftime('%H:%M')}")
     embed.set_author(name="AI-Hub-ChatGPT", icon_url="https://forklog.com/wp-content/uploads/OpenAI-min.webp")
     embed.set_thumbnail(url="https://forklog.com/wp-content/uploads/OpenAI-min.webp")
     embed.set_image(url="https://forklog.com/wp-content/uploads/OpenAI-min.webp")
  
-    await ctx.respond(f"Hello {ctx.author.mention} 這是指令教學", embed=embed)
+    await ctx.respond(f"Hello {ctx.author.mention} 這是指令表", embed=embed)
 
 
-# ChatGPT-3
-@client.slash_command(description="與ChatGPT-3.5、 4聊天")
+# ChatGPT-3.5, 4
+@client.slash_command(description="與ChatGPT-3.5, ChatGPT-4聊天")
 async def gpt(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="你要與ChatGPT聊的內容"),
         api_key: discord.Option(str, description="OpenAI的API Key") = None,
         role: discord.Option(str, choices=["用戶", "系統", "助手"], default="用戶", description="ChatGPT的角色，預設為: 用戶") = None,
-        engine: discord.Option(str, choices=["gpt-3.5-turbo", "gpt-4", "gpt-4-32k"], default="gpt-3.5-turbo", description="GPT模型，預設為: gpt-3.5-turbo") = None,
+        model: discord.Option(str, choices=["gpt-3.5-turbo", "gpt-4", "gpt-4-32k"], default="gpt-3.5-turbo", description="GPT模型，預設為: gpt-3.5-turbo") = None,
         top_p: discord.Option(float, choices=[x/10 for x in range(0, 11)], default=1.0, description="過濾生成的詞彙，保留最有可能的回答，數值越高過濾越少，預設值為: 1.0") = None,
         temperature: discord.Option(float, choices=[x/10 for x in range(0, 11)], default=0.5, description="控制回答生成的多樣性和隨機性，數值越高越隨機，預設值為: 0.5") = None,
         presence_penalty: discord.Option(float, default=0, description="設置生成的現有詞彙懲罰程度，數值越高重複性降低、多樣性提高，預設值為:0，範圍: -2.0~2.0") = None,
         frequency_penalty: discord.Option(float, default=0, description="設置生成的詞彙頻率懲罰程度，數值越高生成的內容裡重複詞彙越少，預設值為:0，範圍: -2.0~2.0") = None,
-        reply_count: discord.Option(int, default=1, description="回答的次數，預設值: 1") = None
+        reply_count: discord.Option(int, default=1, description="回答的次數，預設值: 1") = None,
+        rollback: discord.Option(int, default=0, description="要退回的對話次數，預設值: 0") = None,
+        reset: discord.Option(bool, default=False, choices=[True, False], description="重置所有對話") = None
     ):
 
     # 延遲
     await ctx.defer()
 
     # 使用者完整命令
-    commands = {
+    Commands = {
         "user_id": ctx.author.id,
         "prompts": prompts,
+        "api_key": api_key,
         "role": role,
-        "engine": engine,
+        "model": model,
         "top_p": temperature,
         "temperature": temperature,
         "presence_penalty": presence_penalty,
         "frequency_penalty": frequency_penalty,
-        "reply_count": reply_count
+        "reply_count": reply_count,
+        "rollback": rollback,
+        "reset": reset
     }
 
-    print(f"\n\n使用者完整命令: /gpt \n{beauty_dict(data=commands, indent_value=2, utf_8=True)}")
-
-    result = ChatGPT_Reply(*list(commands.values())[1:], api_key) # 不傳入user_id
-
-    if(isinstance(result, list)):
-        if(result[0] == "Error"):
-            result = f"⚠️ {result[1]}"
-        elif(result[0] == "Dangerous"):
-            result = f"⚡🚧⚡ {result[1]} \n <@{Admin_ID}>已排入修復行程!"
-
-    print(f"\n命令結果: {result}") # 命令結果
-
-    await ctx.respond(result, ephemeral=True)
+    await Commands_Hub(ctx, Commands, ChatGPT_Reply, True, "chat")
 
 
-# BingGPT(GPT-4)
-@client.slash_command(description="與BingGPT(GPT-4)聊天")
+# Bing ChatGPT(GPT-4)
+@client.slash_command(description="與Bing ChatGPT(GPT-4)聊天")
 async def gpt4(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="你要與Bing ChatGPT聊的內容"),
-        role:discord.Option(str, choices=["創意", "平衡", "精確"], default="平衡") = None
+        style:discord.Option(str, choices=["創意", "平衡", "精確"], default="平衡") = None
     ):
 
+    # 延遲
     await ctx.defer()
-    print(f"\n\n使用者完整命令: /gpt4 {prompts} {role}") # 使用者完整命令
-    print(f"\n命令的值: {prompts}") # 命令的值
 
-    result = await EdgeGPT_Reply(prompts, role)
-    print(f"\n命令結果: {result}") # 命令結果
+    # 使用者完整命令
+    Commands = {
+        "user_id": ctx.author.id,
+        "prompts": prompts,
+        "style_name": style
+    }
 
-    await ctx.respond(result, ephemeral=True)
+    await Commands_Hub(ctx, Commands, EdgeGPT_Reply, True, "chat")
 
 
 # Google Bard
@@ -176,20 +184,20 @@ async def gpt4(
 async def bard(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="你要與Google Bard聊的內容"),
-        token: discord.Option(str, description="Google Bard的Token")
+        token = None
     ):
 
+    # 延遲
     await ctx.defer()
-    print(f"\n\n使用者完整命令: /bard {prompts}") # 使用者完整命令
 
-    result = Bard_Reply(prompts)
-    if(isinstance(result, list)):
-        if(result[0] == "Error"):
-            result = f"⚠️ {result[1]}"
+    # 使用者完整命令
+    Commands = {
+        "user_id": ctx.author.id,
+        "prompts": prompts,
+        "bard_token": token
+    }
 
-    print(f"\n命令結果: {result}") # 命令結果
-
-    await ctx.respond(result, ephemeral=True)
+    await Commands_Hub(ctx, Commands, Bard_Reply, False, "chat")
 
 
 # Bing Image Creator
@@ -197,32 +205,24 @@ async def bard(
 async def img(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="圖片的描述"),
-        width:discord.Option(int, choices=[w for w in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None,
-        height:discord.Option(int, choices=[h for h in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None
+        width: discord.Option(int, choices=[w for w in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None,
+        height: discord.Option(int, choices=[h for h in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None,
+        auth_cookies: discord.Option(str, description="_U auth cookie") = None
     ):
 
+    # 延遲
     await ctx.defer()
-    print(f"\n\n使用者完整命令: /img {prompts}") # 使用者完整命令
-    print(f"\n命令的值: {prompts}") # 命令的值
 
-    result = Image_Creator_Reply(prompts, width, height)
-    img_list = result[1]
+    # 使用者完整命令
+    Commands = {
+        "user_id": ctx.author.id,
+        "prompts": prompts,
+        "width": width,
+        "height": height,
+        "auth_cookies": auth_cookies
+    }
 
-    print(f"\n命令結果: {img_list}") # 命令結果
-
-    if(isinstance(result[1], list)):
-        embed_list = []
-        for img in img_list:
-            embed_list.append(discord.Embed(
-                    title="🎨 Bing Image Creator",
-                    description="生成結果",
-                    color=discord.Colour.random(),
-                    url="https://forklog.com/wp-content/uploads/OpenAI-min.webp").set_image(url=img)
-                )
-
-        await ctx.respond(embeds=embed_list, ephemeral=True)
-    else:
-        await ctx.respond(result[1], ephemeral=True)
+    await Commands_Hub(ctx, Commands, Image_Creator_Reply, True, "image")
 
 
 # OpenAI DALL-E 2
@@ -230,7 +230,7 @@ async def img(
 async def dall(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="圖片的描述"),
-        api_key: discord.Option(str, description="OpenAI的API Key"),
+        api_key: discord.Option(str, description="OpenAI的API Key") = None,
         parameter: discord.Option(int, description="指定生成的圖片數量，預設值: 1", default=1) = None,
         size: discord.Option(int, description="圖片的大小: 256x256, 512x512, 1024x1024， 預設值: 256x256", choices=[256, 512, 1024], default=256) = None
     ):
@@ -239,50 +239,78 @@ async def dall(
     await ctx.defer()
 
     # 使用者完整命令
-    commands = {
+    Commands = {
         "user_id": ctx.author.id,
+        "api_key": api_key,
         "prompts": prompts,
         "parameter": parameter,
         "size": size
     }
 
-    print(f"\n\n使用者完整命令: /dall \n{beauty_dict(data=commands, indent_value=2, utf_8=True)}")
+    await Commands_Hub(ctx, Commands, DALL_E_Reply, False, "image")
 
-    result = DALL_E_Reply(*list(commands.values())[1:], api_key) # 不傳入user_id
 
-    if(result[0] == "Error"):
-        await ctx.respond(f"⚠️ {result[1]}", ephemeral=True)
-    elif(result[0] == "Dangerous"):
-        await ctx.respond(f"⚡🚧⚡ {result[1]} \n <@{Admin_ID}>已排入修復行程!", ephemeral=True)
-    else:
-        img_list = result[1]
-        embed_list = []
-
-        for img in img_list:
-            embed_list.append(discord.Embed(
-                    title="🎨 DALL·E - 2",
-                    description="生成結果",
-                    color=discord.Colour.random(),
-                    url="https://forklog.com/wp-content/uploads/OpenAI-min.webp").set_image(url=img)
-                )
-
-        print(f"\n命令結果: {img_list}") # 命令結果
-
-        await ctx.respond(embeds=embed_list, ephemeral=True)
-
-# 翻譯處理
-def translate(texts):
-    translated = GoogleTranslator(source='auto', target='en').translate(texts)
+# translate languages
+def translate(prompts, source_lang, target_lang):
+    translated = GoogleTranslator(source=source_lang, target=target_lang).translate(prompts)
     print("\n翻譯結果: " + translated + "\n")
     return translated
 
-# 排版dict
-def beauty_dict(data:dict, indent_value:int, utf_8:bool):
+
+# prints nicely formatted dictionary
+def beauty_dict(data:dict, indent_value:int, utf_8:bool, sort:bool = False):
     if(utf_8):
-        return json.dumps(data, indent=indent_value, ensure_ascii=False).encode('utf8').decode()
+        return json.dumps(data, indent=indent_value, ensure_ascii=False, sort_keys=sort).encode('utf8').decode()
     else:
-        return json.dumps(data, indent=indent_value)
+        return json.dumps(data, indent=indent_value, sort_keys=sort)
+
+
+# commands 處理
+async def Commands_Hub(Ctx, Commands_Dict:dict, Function_Name:str, Async:bool, Reply_Type:str):
+    hidden_key = ['user_id', 'api_key', 'bard_token', 'auth_cookies']
+    print(f"\n\n使用者輸入: \n{beauty_dict(data={k: v for k, v in Commands_Dict.items() if k not in hidden_key}, indent_value=2, utf_8=True)}")
+
+    if Async:
+        result = await Function_Name(**dict(list(Commands_Dict.items())[1:]))
+    else:
+        result = Function_Name(**dict(list(Commands_Dict.items())[1:]))
+
+    if(result[0] == 'Success'):
+        if Reply_Type == "chat":
+            result = f"<@{Commands_Dict['user_id']}>\n{result[1]}"
+        elif Reply_Type == 'image':
+            embed_list = []
+
+            img_list = result[1]
+            
+            Title_Dict = {
+                DALL_E_Reply: "DALL·E - 2",
+                Image_Creator_Reply: "Bing Image_Creator"
+            }
+
+            for img in img_list:
+                embed_list.append(discord.Embed(
+                        title=f"🎨 {Title_Dict[Function_Name]}",
+                        description="生成結果",
+                        color=discord.Colour.random(),
+                        url="https://forklog.com/wp-content/uploads/OpenAI-min.webp").set_image(url=img)
+                    )
+
+            result = embed_list
+    elif(result[0] == "Error"):
+        result = f"<@{Commands_Dict['user_id']}>\n⚠️ {result[1]}"
+    elif(result[0] == "Dangerous"):
+        result = f"⚡🚧⚡ {result[1]} \n <@{Admin_ID}>已排入修復行程!"
+
+    # 命令結果
+    if Reply_Type == 'chat':
+        print(f"\n命令結果: {result}")
+        await Ctx.respond(result, ephemeral=True)
+    elif Reply_Type == 'image':
+        print(f"\n命令結果: {img_list}")
+        await Ctx.respond(embeds=embed_list, ephemeral=True)
 
 
 if __name__ == "__main__":
-    client.run(Discord_Token)
+    client.run(Discord_Token) # Run Discord Bot
+    asyncio.run(Commands_Hub())

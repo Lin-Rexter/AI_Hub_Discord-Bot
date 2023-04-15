@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "ai-hub-discord-bot"
-version = "1.0.0"
+name = "AI_Hub_Discord_Bot"
+version = "1.5.0"
 description = "ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord Bot"
 authors = ["Lin-Rexter <aaaa35963596@gmail.com>"]
 license = "MIT"

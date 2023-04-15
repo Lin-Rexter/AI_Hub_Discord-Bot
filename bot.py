@@ -96,8 +96,6 @@ async def help(ctx):
         color=discord.Colour.blurple()
     )
 
-    
-
     embed.add_field(name="🤖 /gpt [ChatGPT]", value="✅ <prompts[對話]>\n✅ <api_key[OpenAI的API Key]>\n✅ <role[system, user(Default), assistant]>\n✅ <engine[gpt-3.5-turbo(Default), gpt-4, gpt-4-32k]>\n✅ <top_p>\n✅ <temperature>\n✅ <presence_penalty>\n✅ <frequency_penalty>\n✅ <reply_count>\n✅ <rollback[Rollback the conversation by n messages]>\n✅ <reset[Reset the conversation]>", inline=False)
     embed.add_field(name="🤖 /gpt4 [Bing ChatGPT]", value="✅ <prompts[對話]>\n✅ <style[creative, balanced(Default), precise]>", inline=False)
     embed.add_field(name="🤖 /bard [Google Bard]", value="✅ <prompts[對話]>\n✅ <token[SESSION('__Secure-1PSID' cookie]>", inline=False)

@@ -7,15 +7,13 @@ from revChatGPT.V3 import Chatbot
 # take environment variables from .env
 env_path = os.path.join(Path(__file__).resolve().parents[2],'.env')
 
-# check whether .env file exists
-is_env_exist = os.path.exists(env_path) and os.path.isfile(env_path)
+load_dotenv(env_path)
 
-if is_env_exist:
-    load_dotenv(env_path)
+# take OpenAI API Key from environment variables
+Openai_API_Key = os.getenv('OPENAI_API_KEY') or None
 
-    Openai_API_Key = os.getenv('OPENAI_API_KEY', None)
-    ChatGPT_Model= os.getenv('CHATGPT_MODEL', None)
-
+# take ChatGPT's default model from environment variables
+ChatGPT_Model= os.getenv('CHATGPT_MODEL') or None
 
 chatbot = Chatbot(
         api_key = Openai_API_Key
@@ -52,9 +50,14 @@ async def ChatGPT_Reply(**kwargs) -> list:
 
         if chatbot.api_key is None:
             reply = ['Error', "Oops❗ 尚未指定API Key"]
-        elif chatbot.engine is None:
-            reply = ['Error', "Oops❗ 尚未指定模型名稱"]
         else:
+            if chatbot.engine is None:
+                print("\nError❗ .env檔尚未指定模型名稱，因此使用預設模型gpt-3.5-turbo")
+                chatbot.engine = "gpt-3.5-turbo"
+            elif chatbot.engine not in ["gpt-3.5-turbo", "gpt-4", "gpt-4-32k"]:
+                print("\nError❗ wrong ChatGPT model name in .env file.\n錯誤❗ .env檔設定的ChatGPT model名稱錯誤，因此使用預設模型gpt-3.5-turbo")
+                chatbot.engine = "gpt-3.5-turbo"
+
             reply_text = await chatbot.ask_async(prompts, role=Role)
             reply = ['Success', reply_text]
 

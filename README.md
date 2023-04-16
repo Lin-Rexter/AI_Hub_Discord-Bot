@@ -150,28 +150,28 @@ More...
 
 #### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/.env)
 > ```env
-> Discord:
+> # Discord:
 > # Discord Bot token # https://discord.com/developers/applications
 > DISCORD_TOKEN = ""
 > # Discord Administrator ID(Administrator ID to mention when an unexpected error occurred in executing the command)
 > DISCORD_ADMIN_ID = ""
 >
-> ChatGPT(Official)、 DALL·E:
+> # ChatGPT(Official)、 DALL·E:
 > # [ChatGPT,DALL·E authentication](OpenAI API key) # https://platform.openai.com/account/api-keys
 > OPENAI_API_KEY = ""
 > # Default ChatGPT_Model(gpt-3.5-turbo, gpt-4, gpt-4-32k)
 > CHATGPT_MODEL = "gpt-3.5-turbo"
 >
-> Bing ChatGPT:
+> # Bing ChatGPT:
 > # Default Bing ChatGPT response style(creative, balanced, precise)
 > RESPONSE_STYLE = "balanced"
 >
-> Bing Image Creator:
+> # Bing Image Creator:
 > # Bing Image Creator authentication(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
 > # If you use cookies.json(Step 3), you do not need to set
 > AUTH_COOKIE = ""
 >
-> Google Bard:
+> # Google Bard:
 > # Google Bard authentication[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
 > BARD_TOKEN = ""
 >

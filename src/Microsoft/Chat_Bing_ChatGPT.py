@@ -1,6 +1,7 @@
 import os
 import sys
 import contextlib
+import json
 from dotenv import load_dotenv
 from pathlib import Path
 from EdgeGPT import Chatbot, ConversationStyle
@@ -35,7 +36,8 @@ try:
     bot
 except NameError:
     try:
-        bot = Chatbot(cookies = list(env_cookies))
+        json_acceptable_string = env_cookies.replace("'", "\"")
+        bot = Chatbot(cookies = json.loads(json_acceptable_string))
     except Exception as e:
         print(e)
         

@@ -31,7 +31,7 @@
 **[2023/04/16]**
 1. **指令**:
 	- /gpt [ChatGPT]:
-		* 新增 **`rollback`** 和 **`reset`**, 可以 **退回** 或 **重置** 對話
+		* 新增 **`rollback`** 和 **`reset`**, 可以**退回**或**重置**對話
 	- /img [Bing Image Creator]:
 		* 新增 **`auth_cookies`**, 可以使用自己的cookies
 	- /help [指令說明]
@@ -164,7 +164,7 @@ More...
 
 - ### 雲端部署
 	#### 1. [Railway (最後更新: 2023/04/16)](https://railway.app?referralCode=CCqlpO)
-	**[免費計畫](https://docs.railway.app/reference/plans#starter-plan):** 每月有5.00美元的使用量，執行時間限制500小時。512MB記憶體空間，2個vCPU和1GB的儲存空間。
+	**[免費計畫](https://docs.railway.app/reference/plans#starter-plan):** 每月提供5.00美元的使用額度、500小時的運行時間(至少20天左右)、512MB的記憶體空間、2顆vCPU和1GB的儲存空間。
 	> [![部署至Railway](https://railway.app/button.svg)](https://railway.app/template/9XWCtT?referralCode=CCqlpO)
 
 - ### 本地部署
@@ -208,7 +208,7 @@ More...
 
 	#### 4. [使用Poetry運行](https://python-poetry.org/docs/#installation)
 	> **4-1. 編輯 [poetry 設定檔](https://python-poetry.org/docs/cli/#config)**
-	> If you prefer to have the virtual environment in the project directory
+	>> 如果你偏好將虛擬空間配置在專案目錄底下
 	> ```bash
 	> poetry config virtualenvs.in-project true
 	> ```

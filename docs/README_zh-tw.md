@@ -208,8 +208,8 @@ More...
 	> ```
 
 	#### 3. [Bing ChatGPT 授權](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
-	> 1. **重新命名** **cookies.example.json** 檔案為 **cookies.json**
-	> 2. **將cookies貼到[cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)**
+	>1. **重新命名** **cookies.example.json** 檔案為 **cookies.json**
+	>2. **將cookies貼到[cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)**
 
 	#### 4. [使用Poetry運行](https://python-poetry.org/docs/#installation)
 	> **4-1. 編輯 [poetry 設定檔](https://python-poetry.org/docs/cli/#config)**

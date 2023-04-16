@@ -159,22 +159,22 @@ files = [
 
 [[package]]
 name = "attrs"
-version = "22.2.0"
+version = "23.1.0"
 description = "Classes Without Boilerplate"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "attrs-22.2.0-py3-none-any.whl", hash = "sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836"},
-    {file = "attrs-22.2.0.tar.gz", hash = "sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99"},
+    {file = "attrs-23.1.0-py3-none-any.whl", hash = "sha256:1f28b4522cdc2fb4256ac1a020c78acf9cba2c6b461ccd2c126f3aa8e8335d04"},
+    {file = "attrs-23.1.0.tar.gz", hash = "sha256:6279836d581513a26f1bf235f9acd333bc9115683f14f7e8fae46c98fc50e015"},
 ]
 
 [package.extras]
-cov = ["attrs[tests]", "coverage-enable-subprocess", "coverage[toml] (>=5.3)"]
-dev = ["attrs[docs,tests]"]
-docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope.interface"]
-tests = ["attrs[tests-no-zope]", "zope.interface"]
-tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy (>=0.971,<0.990)", "mypy (>=0.971,<0.990)", "pympler", "pympler", "pytest (>=4.3.0)", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-mypy-plugins", "pytest-xdist[psutil]", "pytest-xdist[psutil]"]
+cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
+dev = ["attrs[docs,tests]", "pre-commit"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
+tests = ["attrs[tests-no-zope]", "zope-interface"]
+tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
 
 [[package]]
 name = "beautifulsoup4"
@@ -342,14 +342,14 @@ pdf = ["pypdf (>=3.3.0,<4.0.0)"]
 
 [[package]]
 name = "edgegpt"
-version = "0.1.23"
+version = "0.1.25.1"
 description = "Reverse engineered Edge Chat API"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "EdgeGPT-0.1.23-py3-none-any.whl", hash = "sha256:e91e91a6273edd6cbca1eb4d2d1e9a6839f7fc4a872091d507a5c7968be5f01b"},
-    {file = "EdgeGPT-0.1.23.tar.gz", hash = "sha256:25c1383531251bd4b5246288e9c19e73b33d83f41e9531c1e62ed7818a017f7a"},
+    {file = "EdgeGPT-0.1.25.1-py3-none-any.whl", hash = "sha256:5293c6f6ff75a3eb72917009d23129569ef011e9d770a31ff74f33018d5def31"},
+    {file = "EdgeGPT-0.1.25.1.tar.gz", hash = "sha256:d2a796622c42ba0579d7ab3f17e19214daaba00c5c35abb84fd6e3ae5bd86db0"},
 ]
 
 [package.dependencies]
@@ -904,14 +904,14 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "revchatgpt"
-version = "4.2.2"
+version = "4.2.3"
 description = "ChatGPT is a reverse engineering of OpenAI's ChatGPT API"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "revChatGPT-4.2.2-py3-none-any.whl", hash = "sha256:7d7e9186ba18d40deab59ea634ea91417d86d6143af2b88d1185b40ba459aa68"},
-    {file = "revChatGPT-4.2.2.tar.gz", hash = "sha256:36e5ed7fec6e57f4b51cbaa72eabf74db3592a1b24d8d8aff5817f73cef14a65"},
+    {file = "revChatGPT-4.2.3-py3-none-any.whl", hash = "sha256:5463b9feed9649f49417cfeb734c33eb97e14630be72d049ce6835a74e593a2c"},
+    {file = "revChatGPT-4.2.3.tar.gz", hash = "sha256:e6687ceae17d92e9c701e1f7d9d89da5d91e2d2d0453ee20ebfd7720e42460d9"},
 ]
 
 [package.dependencies]

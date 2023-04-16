@@ -1,6 +1,6 @@
 import os
 import sys
-import contextlib
+#import contextlib
 from dotenv import load_dotenv
 from pathlib import Path
 from EdgeGPT import Chatbot, ConversationStyle
@@ -25,10 +25,13 @@ if os.path.getsize(cookie_path) <= 0:
     sys.exit("\nError: cookies.json(Bing CgatGPT) can't empty\n")
 '''
 
+'''
 # https://docs.python.org/zh-cn/3.8/library/contextlib.html#contextlib.suppress
 # 錯誤抑制
 with contextlib.suppress(Exception):
-    bot = Chatbot(cookiePath = cookie_path or env_cookies)
+'''
+
+bot = Chatbot(cookiePath = cookie_path or env_cookies)
 
 async def EdgeGPT_Reply(**kwargs) -> list:
     try:

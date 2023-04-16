@@ -29,12 +29,11 @@ if os.path.getsize(cookie_path) <= 0:
 # https://docs.python.org/zh-cn/3.8/library/contextlib.html#contextlib.suppress
 # 錯誤抑制
 with contextlib.suppress(Exception):
-    bot = Chatbot(cookiePath = cookie_path) or None
+    bot = Chatbot(cookiePath = cookie_path)
 
-print(env_cookies)
-
-if bot is None:
-    bot = Chatbot(cookiePath = env_cookies) or None
+if not bot:
+    with contextlib.suppress(Exception):
+        bot = Chatbot(cookiePath = env_cookies)
 
 async def EdgeGPT_Reply(**kwargs) -> list:
     try:

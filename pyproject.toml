@@ -2,9 +2,12 @@
 name = "AI_Hub_Discord_Bot"
 version = "1.5.0"
 description = "ChatGPT、BingGPT、Image Creator、DALL_E、Other AI Application with Discord Bot"
+keywords = ["python", "python3", "discord-bot", "discord-py", "gpt-3", "gpt-35-turbo", "gpt-4", "chatgpt", "bing chatgpt", "bing image-creator", "delle-2"]
 authors = ["Lin-Rexter <aaaa35963596@gmail.com>"]
 license = "MIT"
-readme = "README.md"
+readme = ["docs/README.md", "docs/README_zh-tw.md"]
+repository = "https://github.com/Lin-Rexter/AI_Hub_Discord-Bot"
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -20,5 +23,5 @@ googlebard = "^0.0.6.1"
 
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

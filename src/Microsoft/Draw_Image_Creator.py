@@ -26,6 +26,7 @@ if is_cookies_exist:
             cookie_json = json.load(file)
             for cookie in cookie_json:
                 if cookie.get("name") == "_U":
+                    global cookie_U
                     cookie_U = cookie.get("value")
                     break
 

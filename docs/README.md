@@ -158,6 +158,8 @@ More...
 	
 	> **2-2.**
 	> ```env
+	> ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": The value returned from the command will be used first.
+	>
 	> # Discord:
 	> # Discord Bot token # https://discord.com/developers/applications
 	> DISCORD_TOKEN = ""
@@ -170,10 +172,6 @@ More...
 	> # Default ChatGPT_Model(gpt-3.5-turbo, gpt-4, gpt-4-32k)
 	> CHATGPT_MODEL = "gpt-3.5-turbo"
 	>
-	> # Bing ChatGPT:
-	> # Default Bing ChatGPT response style(creative, balanced, precise)
-	> RESPONSE_STYLE = "balanced"
-	>
 	> # Bing Image Creator:
 	> # Bing Image Creator authentication(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
 	> # If you use cookies.json(Step 3), you do not need to set
@@ -183,10 +181,14 @@ More...
 	> # Google Bard authentication[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
 	> BARD_TOKEN = ""
 	>
-	> ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": The value returned from the command will be used first.
+	> # Bing ChatGPT:
+	> # Default Bing ChatGPT response style(creative, balanced, precise)
+	> RESPONSE_STYLE = "balanced"
+	> # Bing ChatGPT authentication(Paste cookies: https://github.com/acheong08/EdgeGPT#getting-authentication-required)
+	> BING_CHAT_COOKIES = 
 	> ```
 
-	#### 3. [Bing ChatGPT authentication](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
+	#### 3. [Bing ChatGPT authentication(Not necessary if BING_CHAT_COOKIES is set in the .env file)](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
 	> **3-1. Rename** the file **cookies.example.json** to **cookies.json**
 
 	> **3-2. Paste cookies** into cookies.json

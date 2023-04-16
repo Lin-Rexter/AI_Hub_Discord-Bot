@@ -24,18 +24,6 @@
 <details>
   <summary>
 
-## What's News
-
-  </summary>
-
-**[2023/04/16 10:56]**
-- **Accidentally push some important files, so I deleted all commit history (79). . .**
-
-</details>
-
-<details>
-  <summary>
-
 ## Example🕹️
 	  
   </summary>
@@ -166,7 +154,9 @@ More...
 	> ```
 
 	#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/582b427e0e58e4848fab4bf5233fca6936fc18ea/.env)
-	> **Rename the file .env.example to .env**
+	> **2-1. Rename the file .env.example to .env**
+	
+	> **2-2.**
 	> ```env
 	> # Discord:
 	> # Discord Bot token # https://discord.com/developers/applications
@@ -197,8 +187,9 @@ More...
 	> ```
 
 	#### 3. [Bing ChatGPT authentication](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
-	> 1. **Rename** the file **cookies.example.json** to **cookies.json**
-	> 2. **Paste cookies** into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)
+	> **3-1. Rename** the file **cookies.example.json** to **cookies.json**
+
+	> **3-2. Paste cookies** into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)
 
 	#### 4. [Running via Poetry](https://python-poetry.org/docs/#installation)
 	> **3-1. Edit [poetry config settings](https://python-poetry.org/docs/cli/#config)**

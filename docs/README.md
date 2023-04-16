@@ -24,20 +24,12 @@
 <details>
   <summary>
 
-## What's New?
+## What's News
 
   </summary>
 
-**[2023/04/16]**
-1. **Commands**:
-	- /gpt [ChatGPT]:
-		* add **`rollback`** and **`reset`**, can **rollback** or **reset** the conversation
-	- /img [Bing Image Creator]:
-		* add **`auth_cookies`**, can use your own cookies
-	- /help [Command Description]
-		* Update content
-
-2. **Code refactoring and optimization**
+**[2023/04/16 10:56]**
+- **Accidentally push some important files, so I deleted all commit history (79). . .**
 
 </details>
 
@@ -174,6 +166,7 @@ More...
 	> ```
 
 	#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/582b427e0e58e4848fab4bf5233fca6936fc18ea/.env)
+	> **Rename the file .env.example to .env**
 	> ```env
 	> # Discord:
 	> # Discord Bot token # https://discord.com/developers/applications
@@ -204,7 +197,8 @@ More...
 	> ```
 
 	#### 3. [Bing ChatGPT authentication](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
-	> **Paste cookies into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)**
+	> 1. **Rename** the file **cookies.example.json** to **cookies.json**
+	> 2. **Paste cookies** into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)
 
 	#### 4. [Running via Poetry](https://python-poetry.org/docs/#installation)
 	> **3-1. Edit [poetry config settings](https://python-poetry.org/docs/cli/#config)**

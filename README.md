@@ -32,7 +32,7 @@
 	- /gpt [ChatGPT]:
 		* add **`rollback`** and **`reset`**, can **rollback** or **reset** the conversation
 	- /img [Bing Image Creator]:
-		* add **`auth_cookies`**, use your own cookies
+		* add **`auth_cookies`**, can use your own cookies
 	- /help [Command Description]
 		* Update content
 

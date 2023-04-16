@@ -6,14 +6,10 @@ from dotenv import load_dotenv
 # take environment variables from .env
 env_path = os.path.join(Path(__file__).resolve().parents[2], '.env')
 
-# check whether .env file exists
-is_env_exist = os.path.exists(env_path) and os.path.isfile(env_path)
+load_dotenv(env_path)
 
-if is_env_exist:
-    load_dotenv(env_path)
-
-    # take OpenAI API Key from environment variables
-    Openai_API_Key = os.getenv('OPENAI_API_KEY', None)
+# take OpenAI API Key from environment variables
+Openai_API_Key = os.getenv('OPENAI_API_KEY') or None
 
 
 def handle_error(e) -> list:

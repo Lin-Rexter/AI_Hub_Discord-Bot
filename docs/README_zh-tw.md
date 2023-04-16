@@ -173,7 +173,7 @@ More...
 	> git clone https://github.com/Lin-Rexter/AI_Hub_Discord-Bot.git
 	> ```
 
-	#### 2. [設置環境變數](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/582b427e0e58e4848fab4bf5233fca6936fc18ea/.env)
+	#### 2. 設置環境變數
 	> **2-1 重新命名 .env.example 檔案為 .env**
 
 	> **2-2**
@@ -209,7 +209,7 @@ More...
 	#### 3. [Bing ChatGPT 授權](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
 	> **3-1. 重新命名** **cookies.example.json** 檔案為 **cookies.json**
 
-	> **3-2. 將cookies貼到[cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)**
+	> **3-2. 將cookies貼到cookies.json**
 
 	#### 4. [使用Poetry運行](https://python-poetry.org/docs/#installation)
 	> **4-1. 編輯 [poetry 設定檔](https://python-poetry.org/docs/cli/#config)**

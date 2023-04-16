@@ -31,7 +31,9 @@ if os.path.getsize(cookie_path) <= 0:
 with contextlib.suppress(Exception):
     bot = Chatbot(cookiePath = cookie_path)
 
-if not bot:
+try:
+    bot
+except NameError:
     with contextlib.suppress(Exception):
         bot = Chatbot(cookies = env_cookies)
 

@@ -178,6 +178,8 @@ More...
 
 	> **2-2**
 	> ```env
+	> ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": 將會首先使用從指令返回的設置
+	>
 	> # Discord:
 	> # Discord Bot token # https://discord.com/developers/applications
 	> DISCORD_TOKEN = ""
@@ -190,10 +192,6 @@ More...
 	> # 預設 ChatGPT 模型(gpt-3.5-turbo, gpt-4, gpt-4-32k)
 	> CHATGPT_MODEL = "gpt-3.5-turbo"
 	>
-	> # Bing ChatGPT:
-	> # 預設 Bing ChatGPT 對話風格(創意, 平衡, 精確)
-	> RESPONSE_STYLE = "balanced"
-	>
 	> # Bing Image Creator:
 	> # Bing Image Creator 授權(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
 	> # 如果有設置cookies.json則可以不用設置，設置部分請查看步驟3
@@ -203,10 +201,14 @@ More...
 	> # Google Bard 授權[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
 	> BARD_TOKEN = ""
 	>
-	> ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": 將會首先使用從指令返回的設置
+	> # Bing ChatGPT:
+	> # 預設 Bing ChatGPT 對話風格(創意, 平衡, 精確)
+	> RESPONSE_STYLE = "balanced"
+	> # Bing ChatGPT 授權(貼上cookies: https://github.com/acheong08/EdgeGPT#getting-authentication-required)
+	> BING_CHAT_COOKIES = 
 	> ```
 
-	#### 3. [Bing ChatGPT 授權](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
+	#### 3. [Bing ChatGPT 授權(如果在.env檔已設置BING_CHAT_COOKIES則不用)](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
 	> **3-1. 重新命名** **cookies.example.json** 檔案為 **cookies.json**
 
 	> **3-2. 將cookies貼到cookies.json**

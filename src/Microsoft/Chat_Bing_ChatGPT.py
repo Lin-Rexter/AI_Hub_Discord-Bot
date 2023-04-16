@@ -34,8 +34,11 @@ with contextlib.suppress(Exception):
 try:
     bot
 except NameError:
-    with contextlib.suppress(Exception):
+    try:
         bot = Chatbot(cookies = list(env_cookies))
+    except Exception as e:
+        print(e)
+        
 
 async def EdgeGPT_Reply(**kwargs) -> list:
     try:

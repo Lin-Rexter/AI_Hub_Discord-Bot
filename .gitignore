@@ -102,6 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.env
 .venv
 env/
 venv/
@@ -133,3 +134,6 @@ no.txt
 # test
 test_*.py
 test.py
+
+# json
+cookies.json

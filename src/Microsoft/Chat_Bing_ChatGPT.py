@@ -15,7 +15,7 @@ if not is_exist:
 if os.path.getsize(cookie_path) <= 0:
     sys.exit("\nError: cookies.json(Bing CgatGPT) can't empty\n")
 
-bot = Chatbot(cookiePath = cookie_path)
+bot = Chatbot(cookiePath=cookie_path)
 
 async def EdgeGPT_Reply(**kwargs) -> list:
     try:

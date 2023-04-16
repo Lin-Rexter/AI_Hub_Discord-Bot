@@ -27,12 +27,16 @@
 
   </summary>
 
-1. Commands:
+**[2023/04/16]**
+1. **Commands**:
 	- /gpt [ChatGPT]:
 		* add **`rollback`** and **`reset`**, can **rollback** or **reset** the conversation
 	- /img [Bing Image Creator]:
 		* add **`auth_cookies`**, use your own cookies
-2. Code refactoring
+	- /help [Command Description]
+		* Update content
+
+2. **Code refactoring and optimization**
 
 </details>
 

@@ -6,14 +6,10 @@ from Bard import Chatbot
 # take environment variables from .env
 env_path = os.path.join(Path(__file__).resolve().parents[2],'.env')
 
-# check whether .env file exists
-is_env_exist = os.path.exists(env_path) and os.path.isfile(env_path)
+load_dotenv(env_path)
 
-if is_env_exist:
-    load_dotenv(env_path)
-
-    # take Bard token("__Secure-1PSID" cookie) from environment variables
-    env_bard_token = os.getenv('BARD_TOKEN', None)
+# take Bard token("__Secure-1PSID" cookie) from environment variables
+env_bard_token = os.getenv('BARD_TOKEN') or None
 
 
 def Bard_Reply(**kwargs) -> list:

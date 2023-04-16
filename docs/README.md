@@ -153,7 +153,7 @@ More...
 	> git clone https://github.com/Lin-Rexter/AI_Hub_Discord-Bot.git
 	> ```
 
-	#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/582b427e0e58e4848fab4bf5233fca6936fc18ea/.env)
+	#### 2. Set Environment Variables
 	> **2-1. Rename the file .env.example to .env**
 	
 	> **2-2.**
@@ -189,7 +189,7 @@ More...
 	#### 3. [Bing ChatGPT authentication](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
 	> **3-1. Rename** the file **cookies.example.json** to **cookies.json**
 
-	> **3-2. Paste cookies** into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)
+	> **3-2. Paste cookies** into cookies.json
 
 	#### 4. [Running via Poetry](https://python-poetry.org/docs/#installation)
 	> **3-1. Edit [poetry config settings](https://python-poetry.org/docs/cli/#config)**

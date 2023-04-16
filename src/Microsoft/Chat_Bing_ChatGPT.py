@@ -33,7 +33,7 @@ with contextlib.suppress(Exception):
 
 if not bot:
     with contextlib.suppress(Exception):
-        bot = Chatbot(cookiePath = env_cookies)
+        bot = Chatbot(cookies = env_cookies)
 
 async def EdgeGPT_Reply(**kwargs) -> list:
     try:

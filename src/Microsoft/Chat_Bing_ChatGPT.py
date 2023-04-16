@@ -6,7 +6,7 @@ from pathlib import Path
 from EdgeGPT import Chatbot, ConversationStyle
 
 # take cookies.json path
-cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.json') or None
+cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.json')
 
 env_cookies = os.getenv('BING_CHAT_COOKIES') or None
 
@@ -29,7 +29,9 @@ if os.path.getsize(cookie_path) <= 0:
 # https://docs.python.org/zh-cn/3.8/library/contextlib.html#contextlib.suppress
 # 錯誤抑制
 with contextlib.suppress(Exception):
-    bot = Chatbot(cookiePath = env_path) or None
+    bot = Chatbot(cookiePath = cookie_path) or None
+
+print(env_cookies)
 
 if bot is None:
     bot = Chatbot(cookiePath = env_cookies) or None

@@ -6,17 +6,19 @@ from dotenv import load_dotenv
 from pathlib import Path
 from EdgeGPT import Chatbot, ConversationStyle
 
-# take cookies.json path
-cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.json')
-
-env_cookies = os.getenv('BING_CHAT_COOKIES') or None
-
 # take environment variables from .env
 env_path = os.path.join(Path(__file__).resolve().parents[2],'.env')
 
 load_dotenv(env_path)
 
+# take cookies form environment variables
+env_cookies = os.getenv('BING_CHAT_COOKIES') or None
+
+# take response style form environment variables
 env_response_style = os.getenv('RESPONSE_STYLE') or None
+
+# cookies.json path
+cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.json')
 
 '''
 if not is_exist:
@@ -32,6 +34,7 @@ if os.path.getsize(cookie_path) <= 0:
 with contextlib.suppress(Exception):
     bot = Chatbot(cookiePath = cookie_path)
 
+# If cookie_path doesn't work, use env_cookies.
 try:
     bot
 except NameError:
@@ -39,7 +42,7 @@ except NameError:
         json_acceptable_string = env_cookies.replace("'", "\"")
         bot = Chatbot(cookies = json.loads(json_acceptable_string))
     except Exception as e:
-        print(e)
+        print("\nError❗ ", e)
         
 
 async def EdgeGPT_Reply(**kwargs) -> list:

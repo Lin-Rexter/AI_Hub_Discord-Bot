@@ -3,8 +3,8 @@
 
 <div align="center">
 
-# 🤖AI-Hub-Discord-Bot🤖
-**Discord bot with multiple applications of AI.**
+## 🤖AI-Hub-Discord-Bot🤖
+**Deploy your own multi-AI application Discord bot.**
 
 <img src="https://user-images.githubusercontent.com/84280745/230615435-2c90c882-f34d-46e4-a140-8d0f69461bd1.gif" alt="Demo">
 

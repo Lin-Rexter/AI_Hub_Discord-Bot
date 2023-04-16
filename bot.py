@@ -36,21 +36,19 @@ from deep_translator import GoogleTranslator
 # take environment variables from .env
 env_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), ".env")
 
-# check whether .env file exists
-is_env_exist = os.path.exists(env_path) and os.path.isfile(env_path)
+load_dotenv(env_path)
 
-if is_env_exist:
-    load_dotenv(env_path)
+# take Discord Bot token from environment variables
+Discord_Token = os.getenv('DISCORD_TOKEN') or None
 
-    # take Discord Bot token from environment variables
-    Discord_Token = os.getenv('DISCORD_TOKEN', None)
-    
-    # take Discord Administrator ID from environment variables
-    Administrator_ID = os.getenv('DISCORD_ADMIN_ID', None)
+# take Discord Administrator ID from environment variables
+Administrator_ID = os.getenv('DISCORD_ADMIN_ID') or None
 
-if not Discord_Token:
-    sys.exit("\nPlease set the DISCORD_TOKEN environment variable in the .env file.\n請在.env檔設置DISCORD_TOKEN環境變量。\n")
+if Discord_Token is None:
+    sys.exit("\nError❗: Please set the DISCORD_TOKEN environment variable in the .env file\n請在.env檔設置DISCORD_TOKEN環境變量。\n")
 
+if Administrator_ID is None:
+    print("\n⚠️ You did not set Administrator_ID in .env file\n⚠️ .env檔尚未設置Administrator_ID\n")
 
 # Discord Bot Intents(權限設置)
 intents = discord.Intents.default()
@@ -124,7 +122,7 @@ async def gpt(
         prompts: discord.Option(str, description="你要與ChatGPT聊的內容"),
         api_key: discord.Option(str, description="OpenAI的API Key") = None,
         role: discord.Option(str, choices=["用戶", "系統", "助手"], default="用戶", description="ChatGPT的角色，預設為: 用戶") = None,
-        model: discord.Option(str, choices=["gpt-3.5-turbo", "gpt-4", "gpt-4-32k"], default="gpt-3.5-turbo", description="GPT模型，預設為: gpt-3.5-turbo") = None,
+        model: discord.Option(str, choices=["gpt-3.5-turbo", "gpt-4", "gpt-4-32k"], description="GPT模型，預設: gpt-3.5-turbo") = None,
         top_p: discord.Option(float, choices=[x/10 for x in range(0, 11)], default=1.0, description="過濾生成的詞彙，保留最有可能的回答，數值越高過濾越少，預設值為: 1.0") = None,
         temperature: discord.Option(float, choices=[x/10 for x in range(0, 11)], default=0.5, description="控制回答生成的多樣性和隨機性，數值越高越隨機，預設值為: 0.5") = None,
         presence_penalty: discord.Option(float, default=0, description="設置生成的現有詞彙懲罰程度，數值越高重複性降低、多樣性提高，預設值為:0，範圍: -2.0~2.0") = None,
@@ -161,7 +159,7 @@ async def gpt(
 async def gpt4(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="你要與Bing ChatGPT聊的內容"),
-        style:discord.Option(str, choices=["創意", "平衡", "精確"], default="平衡") = None
+        style:discord.Option(str, choices=["創意", "平衡", "精確"], description="對話風格，預設: 平衡") = None
     ):
 
     # 延遲
@@ -203,8 +201,8 @@ async def bard(
 async def img(
         ctx:discord.ApplicationContext,
         prompts: discord.Option(str, description="圖片的描述"),
-        width: discord.Option(int, choices=[w for w in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None,
-        height: discord.Option(int, choices=[h for h in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024) = None,
+        width: discord.Option(int, choices=[w for w in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024, description="圖片寬度") = None,
+        height: discord.Option(int, choices=[h for h in range(1024, 1, -41)], min_value=1, max_value=1024, default=1024, description="圖片高度") = None,
         auth_cookies: discord.Option(str, description="_U auth cookie") = None
     ):
 

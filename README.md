@@ -139,7 +139,7 @@ More...
   </summary>
 
 - ### Cloud Hosting
-#### 1. [Railway](https://railway.app)
+#### 1. [Railway (Last updated: 2023/04/16)](https://railway.app?referralCode=CCqlpO)
 > [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/9XWCtT?referralCode=CCqlpO)
 
 - ### Local Deployment
@@ -148,33 +148,40 @@ More...
 > git clone https://github.com/Lin-Rexter/AI_Hub_Discord-Bot.git
 > ```
 
-#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/4a116f6434278c445a0f2c399c6371b9df861000/.env)
+#### 2. [Set Environment Variables](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/.env)
 > ```env
+> Discord:
 > # Discord Bot token # https://discord.com/developers/applications
 > DISCORD_TOKEN = ""
->
 > # Discord Administrator ID(Administrator ID to mention when an unexpected error occurred in executing the command)
 > DISCORD_ADMIN_ID = ""
 >
-> # OpenAI API key[ChatGPT(Official), DALL·E] # https://platform.openai.com/account/api-keys
+> ChatGPT(Official)、 DALL·E:
+> # [ChatGPT,DALL·E authentication](OpenAI API key) # https://platform.openai.com/account/api-keys
 > OPENAI_API_KEY = ""
->
-> # Bing Image Creator(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
-> AUTH_COOKIE = ""
->
-> # Google Bard Token[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
-> BARD_TOKEN = ""
->
 > # Default ChatGPT_Model(gpt-3.5-turbo, gpt-4, gpt-4-32k)
 > CHATGPT_MODEL = "gpt-3.5-turbo"
 >
+> Bing ChatGPT:
 > # Default Bing ChatGPT response style(creative, balanced, precise)
 > RESPONSE_STYLE = "balanced"
+>
+> Bing Image Creator:
+> # Bing Image Creator authentication(_U cookie) # https://github.com/acheong08/BingImageCreator#getting-authentication
+> # If you use cookies.json(Step 3), you do not need to set
+> AUTH_COOKIE = ""
+>
+> Google Bard:
+> # Google Bard authentication[SESSION("__Secure-1PSID" cookie)] # https://github.com/acheong08/Bard#authentication
+> BARD_TOKEN = ""
 >
 > ### "OPENAI_API_KEY", "AUTH_COOKIE", "BARD_TOKEN", "CHATGPT_MODEL", "RESPONSE_STYLE": The value returned from the command will be used first.
 > ```
 
-#### 3. [Running via Poetry](https://python-poetry.org/docs/#installation)
+#### 3. [Bing ChatGPT authentication](https://github.com/acheong08/EdgeGPT#getting-authentication-required)
+> **Paste cookies into [cookies.json](https://github.com/Lin-Rexter/AI_Hub_Discord-Bot/blob/0c34825b1a26bb47f56c4114cf6947aa53e03719/cookies.json)**
+
+#### 4. [Running via Poetry](https://python-poetry.org/docs/#installation)
 > **3-1. Edit [poetry config settings](https://python-poetry.org/docs/cli/#config)**
 > If you prefer to have the virtual environment in the project directory
 > ```bash
@@ -187,17 +194,17 @@ More...
 > ```
 
 > **3-3. [Activating the virtual environment](https://python-poetry.org/docs/cli/#shell)**
-> * Use default Python version
+> * Use **default** Python version
 > ```bash
 > poetry shell
 > ```
 >
-> * If you want to [specify Python version](https://python-poetry.org/docs/managing-environments/#switching-between-environments)
+> * If you want to **[specify Python version](https://python-poetry.org/docs/managing-environments/#switching-between-environments)**
 > ```bash
 > poetry env use 3.9
 > ```
 
-> **3-4. Run script**
+> **3-4. Run Bot**
 > * If you use `poetry shell`
 > ```bash
 > python ./bot.py

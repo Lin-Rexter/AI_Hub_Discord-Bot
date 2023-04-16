@@ -4,7 +4,7 @@ from pathlib import Path
 from EdgeGPT import Chatbot, ConversationStyle
 
 # take cookies.json path
-cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.example.json')
+cookie_path = os.path.join(Path(__file__).resolve().parents[2], 'cookies.json')
 
 # check whether cookies.json file exists
 is_exist = os.path.exists(cookie_path) and os.path.isfile(cookie_path)

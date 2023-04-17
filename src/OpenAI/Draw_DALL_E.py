@@ -60,4 +60,4 @@ def DALL_E_Reply(**kwargs) -> list:
 
             return ["Success", images_list]
     except Exception as e:
-        handle_error(e)
+        return(handle_error(e))

@@ -26,7 +26,7 @@ def handle_error(e) -> list:
     }
 
     print("\nError:", e)
-    if type(e) in ERROR_MESSAGES:
+    if type(e).__name__ in ERROR_MESSAGES:
         return ["Error", ERROR_MESSAGES[type(e)]]
     else:
         return ["Dangerous", "Oops❗ 發生了例外錯誤..."]
@@ -60,4 +60,4 @@ def DALL_E_Reply(**kwargs) -> list:
 
             return ["Success", images_list]
     except Exception as e:
-        return(handle_error(e))
+        return handle_error(e)

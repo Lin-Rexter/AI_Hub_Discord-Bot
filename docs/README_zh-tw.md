@@ -9,6 +9,8 @@
 <img src="https://user-images.githubusercontent.com/84280745/230615435-2c90c882-f34d-46e4-a140-8d0f69461bd1.gif" alt="Demo">
 
 #### **[[English]](./README.md) [中文]**
+	
+## ⚠️ | 代碼重購並增加更多功能中... (05/09/2023) | ⚠️
 </div>
 
 ---

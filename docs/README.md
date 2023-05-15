@@ -10,7 +10,7 @@
 
 #### **[English] [[中文]](./README_zh-tw.md)**
 
-## ⚠️ | Coming soon: Code refactoring and improved command usage! (05/09/2023) | ⚠️
+### ⚠️ | Coming soon: Code refactoring and improved command usage! (05/09/2023) | ⚠️
 
 </div>
 

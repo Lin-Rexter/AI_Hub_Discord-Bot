@@ -21,7 +21,8 @@
 - **🤖[Google Bard](https://github.com/acheong08/Bard)**<br>
 - **🎨[Bing Image Creator](https://github.com/acheong08/EdgeGPT#image-generator)**<br>
 - **🎨[DALL·E](https://platform.openai.com/docs/api-reference/images)**<br>
-- **[More(coming soon...)](https://replicate.com/explore)**
+- **[Replicate(coming soon...)](https://replicate.com/explore)**<br>
+- **[Hugging Face(coming soon...)](https://huggingface.co/models)**
 
 <details>
   <summary>
